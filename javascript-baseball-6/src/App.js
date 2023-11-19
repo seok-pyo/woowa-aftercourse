@@ -80,21 +80,14 @@ class App {
   async restart() {
     MissionUtils.Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
 
-    let reStartInput = await this.getRestartInput();
-    let condition = false;
-
-    while (!condition) {
+    let reStartInput;
+    do {
+      reStartInput = await this.getRestartInput();
       if (reStartInput === '1') {
-        this.game();
-        condition = true;
+        await this.play();
         return;
-      } else if (reStartInput === '2') {
-        condition = true;
-        return;
-      } else {
-        reStartInput = await this.getRestartInput();
       }
-    }
+    } while (reStartInput !== '2');
   }
 }
 
