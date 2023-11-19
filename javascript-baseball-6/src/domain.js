@@ -22,6 +22,7 @@ class BaseballGame {
       await MissionUtils.Console.readLineAsync('숫자를 입력해주세요 :');
     validate.type(userNumber);
     validate.length(userNumber);
+    validate.sameNumber(userNumber);
     return userNumber.split('');
   }
 

@@ -11,4 +11,12 @@ describe('유효성 검사 테스트', () => {
 
     expect(() => validate.length(input)).toThrow('[ERROR] 잘못된 입력입니다.');
   });
+
+  test('입력값에 중복이 있는 경우 예외를 발생시킨다', () => {
+    const input = '112';
+
+    expect(() => validate.sameNumber(input)).toThrow(
+      '[ERROR] 잘못된 입력입니다.',
+    );
+  });
 });
