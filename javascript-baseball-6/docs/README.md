@@ -45,3 +45,4 @@
 
 - [x] restart 메서드 리팩토링 > do/while
 - [x] domain/view 클래스 분리
+  - 사용자 입력을 받는 기능을 좀 더 잘 처리하는 방법?
