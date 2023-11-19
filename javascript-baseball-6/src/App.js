@@ -13,6 +13,23 @@ class App {
     }
     return computer;
   }
+
+  getNumber() {
+    const userNumber = MissionUtils.Console.readLineAsyn('숫자를 입력해주세요');
+    return userNumber.split();
+  }
+
+  compareNumber(computer, user) {
+    const result = {
+      ball: 0,
+      strike: 0,
+    };
+    computer.forEach((number, index) => {
+      if (number === user[index]) result.strike += 1;
+      else if (user.includes(number)) result.ball += 1;
+    });
+    return result;
+  }
 }
 
 export default App;
