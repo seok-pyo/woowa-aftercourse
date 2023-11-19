@@ -6,7 +6,8 @@ const validate = {
   },
 
   length(userInput) {
-    if (userInput.length < 3 || userInput.length > 3)
-      throw new Error('[ERROR] 잘못된 입력입니다.');
+    if (userInput.length !== 3) throw new Error('[ERROR] 잘못된 입력입니다.');
   },
 };
+
+export default validate;
