@@ -1,10 +1,10 @@
-import App from '../src/App';
+import BaseballGame from '../src/domain.js';
 import { Console } from '@woowacourse/mission-utils';
 
 describe('기능 테스트', () => {
   test('1에서 9사이에 서로 다른 숫자 3개를 생성한다.', () => {
-    const app = new App();
-    const result = app.makeNumber();
+    const game = new BaseballGame();
+    const result = game.makeNumber();
     Console.print(result);
   });
 
@@ -12,8 +12,8 @@ describe('기능 테스트', () => {
     const com = [4, 2, 5];
     const user = [4, 5, 6];
 
-    const app = new App();
-    const result = app.compareNumber(com, user);
+    const game = new BaseballGame();
+    const result = game.compareNumber(com, user);
 
     Console.print(result);
   });

@@ -43,4 +43,4 @@
 ### 리팩토링 항목
 
 - [x] restart 메서드 리팩토링 > do/while
-- [ ] domain/view 클래스 분리
+- [x] domain/view 클래스 분리
