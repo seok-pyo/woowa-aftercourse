@@ -84,7 +84,7 @@ class App {
   }
 }
 
-const app = new App();
-await app.game();
+// const app = new App();
+// await app.game();
 
 export default App;
