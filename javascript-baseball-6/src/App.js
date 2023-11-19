@@ -1,3 +1,4 @@
+import validate from './validation.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 class App {
@@ -5,7 +6,10 @@ class App {
     this.computer = [];
   }
 
-  async play() {}
+  async play() {
+    MissionUtils.Console.print('숫자 야구 게임을 시작합니다.');
+    await this.game();
+  }
 
   makeNumber() {
     this.computer = [];
@@ -21,6 +25,8 @@ class App {
   async getNumber() {
     const userNumber =
       await MissionUtils.Console.readLineAsync('숫자를 입력해주세요 : ');
+    validate.type(userNumber);
+    validate.length(userNumber);
     return userNumber.split('');
   }
 
@@ -39,9 +45,17 @@ class App {
   async getResult() {
     const userNumber = await this.getNumber();
     const result = this.compareNumber(userNumber);
-    MissionUtils.Console.print(result);
+    this.judgeCall(result);
     if (result.strike === 3) return true;
     return false;
+  }
+
+  judgeCall(result) {
+    let call = '';
+    if (result.ball !== 0) call += `${result.ball}볼 `;
+    if (result.strike !== 0) call += `${result.strike}스트라이크`;
+    if (result.ball === 0 && result.strike === 0) call += '낫싱';
+    MissionUtils.Console.print(call);
   }
 
   async game() {
@@ -52,7 +66,7 @@ class App {
       condition = await this.getResult();
     }
 
-    if (condition) this.restart();
+    if (condition) await this.restart();
   }
 
   async getRestartInput() {
@@ -85,6 +99,6 @@ class App {
 }
 
 // const app = new App();
-// await app.game();
+// await app.play();
 
 export default App;
