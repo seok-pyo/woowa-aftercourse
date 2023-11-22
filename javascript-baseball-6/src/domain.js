@@ -31,10 +31,13 @@ class BaseballGame {
       ball: 0,
       strike: 0,
     };
+
     this.computer.forEach((number, index) => {
       if (number === Number(user[index])) result.strike += 1;
-      else if (user.includes(number.toString())) result.ball += 1;
+      if (user.includes(number.toString())) result.ball += 1;
     });
+
+    result.ball = result.strike - result.ball;
     return result;
   }
 
