@@ -24,12 +24,20 @@ class App {
     MissionUtils.Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
 
     let reStartInput;
-    do {
+    // do {
+    //   reStartInput = await this.getRestartInput();
+    //   if (reStartInput === '1') {
+    //     return this.game.play();
+    //   }
+    // } while (reStartInput !== '2');
+    while (reStartInput !== '1') {
       reStartInput = await this.getRestartInput();
       if (reStartInput === '1') {
         return this.game.play();
       }
-    } while (reStartInput !== '2');
+      if (reStartInput === '2') break;
+      if (reStartInput !== '2') throw new Error('잘못된 입력입니다.');
+    }
   }
 }
 
