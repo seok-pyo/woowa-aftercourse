@@ -37,7 +37,7 @@ class BaseballGame {
       if (user.includes(number.toString())) result.ball += 1;
     });
 
-    result.ball = result.strike - result.ball;
+    result.ball = result.ball - result.strike;
     return result;
   }
 
