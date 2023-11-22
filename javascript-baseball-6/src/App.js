@@ -8,8 +8,7 @@ class App {
 
   async play() {
     MissionUtils.Console.print('숫자 야구 게임을 시작합니다.');
-    await this.game.play();
-    await this.restart();
+    await this.rePlay();
   }
 
   async getRestartInput() {
@@ -20,28 +19,31 @@ class App {
     return reStartInput;
   }
 
-  async restart() {
-    MissionUtils.Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
+  async rePlay() {
+    this.game.makeNumber();
+    let condition = false;
 
-    let reStartInput;
-    // do {
-    //   reStartInput = await this.getRestartInput();
-    //   if (reStartInput === '1') {
-    //     return this.game.play();
-    //   }
-    // } while (reStartInput !== '2');
-    while (reStartInput !== '1') {
-      reStartInput = await this.getRestartInput();
+    while (!condition) {
+      condition = await this.game.getResult();
+    }
+    MissionUtils.Console.print('3개의 숫자를 모두 맞히셨습니다! 게임 종료');
+    await this.restart();
+  }
+
+  async restart() {
+    let reStartInput = await this.getRestartInput();
+    let condition = false;
+
+    while (!condition) {
       if (reStartInput === '1') {
-        return this.game.play();
+        await this.rePlay();
+        condition = true;
       }
       if (reStartInput === '2') break;
-      if (reStartInput !== '2') throw new Error('잘못된 입력입니다.');
+      if (reStartInput !== '1' && reStartInput !== '2')
+        throw new Error('잘못된 입력입니다.');
     }
   }
 }
-
-const app = new App();
-app.play();
 
 export default App;

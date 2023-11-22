@@ -14,7 +14,7 @@ class BaseballGame {
         this.computer.push(number);
       }
     }
-    return this.computer;
+    // return this.computer;
   }
 
   async getNumber() {
@@ -57,14 +57,14 @@ class BaseballGame {
     MissionUtils.Console.print(call);
   }
 
-  async play() {
-    this.makeNumber();
-    let condition = false;
+  // async play() {
+  //   this.makeNumber();
+  //   let condition = false;
 
-    while (!condition) {
-      condition = await this.getResult();
-    }
-  }
+  //   while (!condition) {
+  //     condition = await this.getResult();
+  //   }
+  // }
 }
 
 export default BaseballGame;
