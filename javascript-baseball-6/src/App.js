@@ -27,8 +27,7 @@ class App {
     do {
       reStartInput = await this.getRestartInput();
       if (reStartInput === '1') {
-        await this.game.play();
-        return;
+        return this.game.play();
       }
     } while (reStartInput !== '2');
   }
