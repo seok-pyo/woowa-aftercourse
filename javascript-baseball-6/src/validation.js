@@ -1,7 +1,7 @@
 const validate = {
   type(userInput) {
     const numberCheck = /[^1-9]/;
-    if (numberCheck.test(userInput) || !userInput)
+    if (!userInput || numberCheck.test(userInput))
       throw new Error('[ERROR] 잘못된 입력입니다.');
   },
 
