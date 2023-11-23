@@ -14,7 +14,6 @@ class BaseballGame {
         this.computer.push(number);
       }
     }
-    // return this.computer;
   }
 
   async getNumber() {
@@ -56,15 +55,6 @@ class BaseballGame {
     if (result.ball === 0 && result.strike === 0) call += '낫싱';
     MissionUtils.Console.print(call);
   }
-
-  // async play() {
-  //   this.makeNumber();
-  //   let condition = false;
-
-  //   while (!condition) {
-  //     condition = await this.getResult();
-  //   }
-  // }
 }
 
 export default BaseballGame;
