@@ -33,14 +33,15 @@ class App {
   async restart() {
     let reStartInput = await this.getRestartInput();
 
+    if (reStartInput !== '1' && reStartInput !== '2')
+      throw new Error('잘못된 입력입니다.');
+
     while (reStartInput === '1' || reStartInput === '2') {
       if (reStartInput === '1') {
         return this.rePlay();
       }
       if (reStartInput === '2') return;
     }
-    if (reStartInput !== '1' && reStartInput !== '2')
-      throw new Error('잘못된 입력입니다.');
   }
 }
 
