@@ -20,13 +20,17 @@ class Game {
 
     carName.split(',').forEach(name => {
       const car = new Car(name.trim());
-      this.#entry.set(name, car);
+      this.#entry.set(name.trim(), car);
     });
   }
 
   async getLength() {
-    this.#length =
+    const input =
       await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+
+    validate.length(input);
+
+    this.#length = input;
   }
 
   printResult() {

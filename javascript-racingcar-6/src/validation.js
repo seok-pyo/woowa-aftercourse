@@ -10,6 +10,13 @@ const validate = {
         '[ERROR] 자동차의 이름은 0보다 크고 5보다 작게 입력해주세요.',
       );
   },
+
+  length(input) {
+    const isNumber = /[^0-9]/;
+
+    if (!input || isNumber.test(input))
+      throw new Error('[ERROR] 실행 횟수는 숫자를 입력해 주세요.');
+  },
 };
 
 export default validate;
