@@ -26,18 +26,32 @@ class Game {
       await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
   }
 
-  play() {
+  printResult() {
+    MissionUtils.Console.print(`\n실행 결과`);
     Array.from({ length: this.#length }, () => {
       for (const [name, car] of this.#entry.entries()) {
         car.goForward();
-        MissionUtils.Console.print(`${name} : ${car.getDistance()}`);
+        MissionUtils.Console.print(
+          `${name} : ${'-'.repeat(car.getDistance())}`,
+        );
       }
       MissionUtils.Console.print('');
     });
+  }
+
+  printWinner() {
+    const winner = [];
+    for (const [name, car] of this.#entry.entries()) {
+      if (car.getDistance() === Number(this.#length)) winner.push(name);
+    }
+    if (winner)
+      MissionUtils.Console.print(`최종 우승자 : ${winner.join(',')} `);
+    if (!winner) MissionUtils.Console.print(`최종 우승자 : 없음`);
   }
 }
 
 const game = new Game();
 await game.getEntry();
 await game.getLength();
-game.play();
+game.printResult();
+game.printWinner();
