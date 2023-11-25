@@ -12,10 +12,10 @@ export default class Car {
   goForward() {
     // if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) return true;
     // else false;
-    const forwardCheck = MissionUtils.Random.pickNumberInRange(0, 9) >= 4;
+    const forwardCheck = MissionUtils.Random.pickNumberInRange(0, 9);
     if (forwardCheck >= 4) this.#distance += 1;
 
-    return forwardCheck >= 4;
+    // return forwardCheck >= 4;
   }
 
   getDistance() {
