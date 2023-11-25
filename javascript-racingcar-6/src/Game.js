@@ -1,5 +1,6 @@
 import Car from './Car.js';
 import validate from './validation.js';
+import { MESSAGE, SYMBOLS } from './constants.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 class Game {
@@ -12,21 +13,18 @@ class Game {
   }
 
   async getEntry() {
-    const carName = await MissionUtils.Console.readLineAsync(
-      '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
-    );
+    const carName = await MissionUtils.Console.readLineAsync(MESSAGE.ENTRY);
 
     validate.entry(carName);
 
-    carName.split(',').forEach(name => {
+    carName.split(SYMBOLS.COMMA).forEach(name => {
       const car = new Car(name.trim());
       this.#entry.set(name.trim(), car);
     });
   }
 
   async getLength() {
-    const input =
-      await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?\n');
+    const input = await MissionUtils.Console.readLineAsync(MESSAGE.LENGTH);
 
     validate.length(input);
 
@@ -34,15 +32,15 @@ class Game {
   }
 
   printResult() {
-    MissionUtils.Console.print(`\n실행 결과`);
+    MissionUtils.Console.print(MESSAGE.RESULT);
     Array.from({ length: this.#length }, () => {
       for (const [name, car] of this.#entry.entries()) {
         car.goForward();
         MissionUtils.Console.print(
-          `${name} : ${'-'.repeat(car.getDistance())}`,
+          `${name} : ${SYMBOLS.DASH.repeat(car.getDistance())}`,
         );
       }
-      MissionUtils.Console.print('');
+      MissionUtils.Console.print(SYMBOLS.BLANK);
     });
   }
 
@@ -54,8 +52,8 @@ class Game {
 
     MissionUtils.Console.print(
       winner.length
-        ? `최종 우승자 : 없음`
-        : `최종 우승자 : ${winner.join(',')} `,
+        ? `${MESSAGE.WINNER}${winner.join(SYMBOLS.COMMA)}`
+        : MESSAGE.WINNER + MESSAGE.NONE,
     );
   }
 
