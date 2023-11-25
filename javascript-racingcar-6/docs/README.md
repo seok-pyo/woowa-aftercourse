@@ -40,10 +40,10 @@ Game.js
 
 - 뷰와 컨트롤러 역할
 - 자동차 객체를 값으로 하는 entry 맵과 실행횟수 length를 필드값으로 가짐
-- 자동차 이름을 입력받고, entry 필드에 값을 추가하는 getEntry 메서드
-- 실행횟수를 입력받고, length 필드에 값을 추가하는 getLength 메서드
-- 전체 주행거리를 출력하는 printResult 메서드
-- 최종 우승자를 출력하는 printWinner 메서드
+- 자동차 이름을 입력받고, entry 필드에 값을 추가하는 getEntry 메서드 (controller)
+- 실행횟수를 입력받고, length 필드에 값을 추가하는 getLength 메서드 (controller)
+- 전체 주행거리를 출력하는 printResult 메서드 (view)
+- 최종 우승자를 출력하는 printWinner 메서드 (view)
 - game을 시작하는 gameStart 메서드(getEntry, getLength, printResult, printWinner) 호출
 
 validation.js
@@ -51,3 +51,13 @@ validation.js
 - entry 함수와, length 함수를 값으로 가지는 객체
 - entry 함수에서는 자동차 길이와 중복값 확인
 - length 함수에서는 실행횟수가 숫자인지, 타입 확인
+
+\*\* 고민 내용
+
+1. 주행거리 값을 누가 가지고 있을 것인지를 고민했습니다. 처음엔 Game이 가지고 있는것도 괜찮을 거라고 생각했는데, 출력형태를 만들면서 주행거리값을 각각의 자동차 객체가 관리하는 편이 좋겠다고 판단했습니다.
+
+2. 자동차 객체를 관리하는 자료형에 대해서 고민했습니다. 직관적인 배열 형태로 추가해서 진행하다가, 이름도 같이 출력해줘야 해서, Map으로 관리하였습니다.
+
+3. 유틸이 들어간 메서드는 테스트를 진행하지 않는 게 맞을지? 아니면 테스트를 진행하는게 좋을지
+
+4. 객체 생성 부분, constructor? -> 1주차 야구게임은?

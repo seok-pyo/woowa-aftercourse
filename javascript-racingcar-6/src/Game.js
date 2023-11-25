@@ -52,9 +52,19 @@ class Game {
       if (car.getDistance() === Number(this.#length)) winner.push(name);
     }
 
-    if (winner.length === 0) MissionUtils.Console.print(`최종 우승자 : 없음`);
-    if (winner.length !== 0)
-      MissionUtils.Console.print(`최종 우승자 : ${winner.join(',')} `);
+    // if (winner.length === 0) MissionUtils.Console.print(`최종 우승자 : 없음`);
+    // if (winner.length !== 0)
+    //   MissionUtils.Console.print(`최종 우승자 : ${winner.join(',')} `);
+
+    // return winner.length
+    //   ? MissionUtils.Console.print(`최종 우승자 : 없음`)
+    //   : MissionUtils.Console.print(`최종 우승자 : ${winner.join(',')} `);
+
+    MissionUtils.Console.print(
+      winner.length
+        ? `최종 우승자 : 없음`
+        : `최종 우승자 : ${winner.join(',')} `,
+    );
   }
 
   async startGame() {
