@@ -6,7 +6,7 @@ class Game {
   #length;
 
   constructor() {
-    this.#entry = [];
+    this.#entry = new Map();
   }
 
   async getEntry() {
@@ -16,7 +16,7 @@ class Game {
 
     carName.split(',').forEach(name => {
       const car = new Car(name.trim());
-      this.#entry.push(car);
+      this.#entry.set(name, car);
     });
   }
 
@@ -24,7 +24,10 @@ class Game {
     this.#length =
       await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
   }
+
+  play() {}
 }
 
 const game = new Game();
-game.getEntry();
+await game.getEntry();
+game.getLength();

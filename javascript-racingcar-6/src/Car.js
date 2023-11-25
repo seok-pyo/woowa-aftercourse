@@ -17,4 +17,8 @@ export default class Car {
 
     return forwardCheck >= 4;
   }
+
+  getDistance() {
+    return this.#distance;
+  }
 }
