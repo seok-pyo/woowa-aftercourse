@@ -49,10 +49,13 @@ class Game {
     if (winner.length !== 0)
       MissionUtils.Console.print(`최종 우승자 : ${winner.join(',')} `);
   }
+
+  async startGame() {
+    await this.getEntry();
+    await this.getLength();
+    this.printResult();
+    this.printWinner();
+  }
 }
 
-const game = new Game();
-await game.getEntry();
-await game.getLength();
-game.printResult();
-game.printWinner();
+export default Game;
