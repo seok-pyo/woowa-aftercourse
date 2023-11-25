@@ -17,6 +17,11 @@ const NUMBER = {
   LIMIT: 9,
   MOVE_DISTANCE: 1,
   LEAST: 4,
+  TEST: /[^0-9]/,
 };
 
-export { MESSAGE, SYMBOLS, NUMBER };
+const NAME = {
+  LIMIT: 5,
+};
+
+export { MESSAGE, SYMBOLS, NUMBER, NAME };
