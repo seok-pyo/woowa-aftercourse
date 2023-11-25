@@ -44,9 +44,10 @@ class Game {
     for (const [name, car] of this.#entry.entries()) {
       if (car.getDistance() === Number(this.#length)) winner.push(name);
     }
-    if (winner)
+
+    if (winner.length === 0) MissionUtils.Console.print(`최종 우승자 : 없음`);
+    if (winner.length !== 0)
       MissionUtils.Console.print(`최종 우승자 : ${winner.join(',')} `);
-    if (!winner) MissionUtils.Console.print(`최종 우승자 : 없음`);
   }
 }
 
