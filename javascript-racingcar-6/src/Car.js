@@ -6,7 +6,9 @@ export default class Car {
     this.#name = name;
   }
 
-  goFoward() {
-    if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) return true;
+  goForward() {
+    // if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) return true;
+    // else false;
+    return MissionUtils.Random.pickNumberInRange(0, 9) >= 4;
   }
 }
