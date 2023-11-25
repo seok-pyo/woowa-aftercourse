@@ -3,6 +3,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 class Game {
   #entry;
+  #length;
 
   constructor() {
     this.#entry = [];
@@ -17,6 +18,11 @@ class Game {
       const car = new Car(name.trim());
       this.#entry.push(car);
     });
+  }
+
+  async getLength() {
+    this.#length =
+      await MissionUtils.Console.readLineAsync('시도할 횟수는 몇 회인가요?');
   }
 }
 
