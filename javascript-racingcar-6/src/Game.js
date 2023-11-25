@@ -1,4 +1,5 @@
 import Car from './Car.js';
+import validate from './validation.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 class Game {
@@ -14,6 +15,8 @@ class Game {
     const carName = await MissionUtils.Console.readLineAsync(
       '경주할 자동차 이름을 입력하세요.(이름은 쉼표(,) 기준으로 구분)\n',
     );
+
+    validate.entry(carName);
 
     carName.split(',').forEach(name => {
       const car = new Car(name.trim());
