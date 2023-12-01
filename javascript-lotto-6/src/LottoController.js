@@ -1,6 +1,7 @@
 import input from './input.js';
 import output from './output.js';
 import Lotto from './Lotto.js';
+import calculate from './calculator.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 class LottoController {
@@ -37,18 +38,30 @@ class LottoController {
 
   makeResult() {
     this.#lottos.forEach(lotto => {
-      const index = lotto.checker(this.#winningNum, this.#bonusNum) - 1;
+      const index = lotto.checker(this.#winningNum, this.#bonusNum);
       this.#rank[index] += 1;
     });
   }
-}
 
-const lc = new LottoController();
-await lc.inputMoney();
-lc.makeLotto();
-lc.printLotto();
-await lc.inputWinningNum();
-await lc.inputBonusNum();
-lc.makeResult();
+  printResult() {
+    output.result(this.#rank);
+  }
+
+  printProfit() {
+    output.profit(calculate.profitRate(this.#money, this.#rank));
+  }
+
+  async start() {
+    await this.inputMoney();
+    this.makeLotto();
+    this.printLotto();
+    await this.inputWinningNum();
+    await this.inputBonusNum();
+    this.makeResult();
+    output.resultMessage();
+    this.printResult();
+    this.printProfit();
+  }
+}
 
 export default LottoController;
