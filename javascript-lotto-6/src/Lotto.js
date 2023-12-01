@@ -25,11 +25,11 @@ class Lotto {
   }
 
   makeResult(sameNumber, notSameNumber, bonusNumber) {
-    let result = 0;
+    let result = null;
     if (sameNumber === 3) result = 5;
     if (sameNumber === 4) result = 4;
-    if (sameNumber === 5 && notSameNumber !== bonusNumber) result = 3;
-    if (sameNumber === 5 && notSameNumber === bonusNumber) result = 2;
+    if (sameNumber === 5 && notSameNumber !== Number(bonusNumber)) result = 3;
+    if (sameNumber === 5 && notSameNumber === Number(bonusNumber)) result = 2;
     if (sameNumber === 6) result = 1;
     return result;
   }

@@ -12,7 +12,7 @@ const input = {
     const winningNumber =
       await MissionUtils.Console.readLineAsync('당첨 번호를 입력해주세요.');
 
-    return winningNumber;
+    return winningNumber.split(',').map(str => Number(str));
   },
 
   async bonusNum() {
