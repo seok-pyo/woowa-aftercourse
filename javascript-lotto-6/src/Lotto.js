@@ -13,11 +13,11 @@ class Lotto {
   }
 
   checker(winningNumbers, bonusNumber) {
-    const sameNumber = 0;
-    const notSameNumber = null;
+    let sameNumber = 0;
+    let notSameNumber = 0;
 
-    winningNumbers.forEach(number => {
-      if (this.#numbers.includes(number)) sameNumber += 1;
+    this.#numbers.forEach(number => {
+      if (winningNumbers.includes(number)) sameNumber += 1;
       else notSameNumber = number;
     });
 
