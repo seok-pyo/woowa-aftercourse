@@ -33,6 +33,10 @@ class Lotto {
     if (sameNumber === 6) result = 1;
     return result;
   }
+
+  getNumbers() {
+    return this.#numbers;
+  }
 }
 
 export default Lotto;
