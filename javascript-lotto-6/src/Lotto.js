@@ -12,7 +12,27 @@ class Lotto {
     }
   }
 
-  // TODO: 추가 기능 구현
+  checker(winningNumbers, bonusNumber) {
+    const sameNumber = 0;
+    const notSameNumber = null;
+
+    winningNumbers.forEach(number => {
+      if (this.#numbers.includes(number)) sameNumber += 1;
+      else notSameNumber = number;
+    });
+
+    return this.makeResult(sameNumber, notSameNumber, bonusNumber);
+  }
+
+  makeResult(sameNumber, notSameNumber, bonusNumber) {
+    let result = 0;
+    if (sameNumber === 3) result = 5;
+    if (sameNumber === 4) result = 4;
+    if (sameNumber === 5 && notSameNumber !== bonusNumber) result = 3;
+    if (sameNumber === 5 && notSameNumber === bonusNumber) result = 2;
+    if (sameNumber === 6) result = 1;
+    return result;
+  }
 }
 
 export default Lotto;
