@@ -5,7 +5,7 @@ const input = {
     const money =
       await MissionUtils.Console.readLineAsync('구입금액을 입력해 주세요.');
 
-    return { money, quantity };
+    return money;
   },
 
   async winningNum() {
@@ -22,3 +22,5 @@ const input = {
     return bonusNumber;
   },
 };
+
+export default input;

@@ -5,8 +5,10 @@ const output = {
     MissionUtils.Console.print(`${number}개를 구매했습니다.`);
   },
 
-  number(lotto) {
-    MissionUtils.Console.print(lotto.getNumbers);
+  number(lottos) {
+    lottos.forEach(lotto => {
+      MissionUtils.Console.print(lotto.getNumbers());
+    });
   },
 
   resultMessage() {
@@ -23,3 +25,5 @@ const output = {
     MissionUtils.Console.print(`총 수익률은 ${resultProfit}입니다.`);
   },
 };
+
+export default output;
