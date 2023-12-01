@@ -5,10 +5,21 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 
 class LottoController {
   #money;
+  #winningNum;
+  #bonusNum;
+  #rank = [0, 0, 0, 0, 0];
   #lottos = [];
 
   async inputMoney() {
     this.#money = await input.money();
+  }
+
+  async inputWinningNum() {
+    this.#winningNum = await input.winningNum();
+  }
+
+  async inputBonusNum() {
+    this.#bonusNum = await input.bonusNum();
   }
 
   makeLotto() {
@@ -23,11 +34,21 @@ class LottoController {
     output.quantity(this.#money / 1000);
     output.number(this.#lottos);
   }
+
+  makeResult() {
+    this.#lottos.forEach(lotto => {
+      const index = lotto.checker(this.#winningNum, this.#bonusNum) - 1;
+      this.#rank[index] += 1;
+    });
+  }
 }
 
-// const lc = new LottoController();
-// await lc.inputMoney();
-// lc.makeLotto();
-// lc.printLotto();
+const lc = new LottoController();
+await lc.inputMoney();
+lc.makeLotto();
+lc.printLotto();
+await lc.inputWinningNum();
+await lc.inputBonusNum();
+lc.makeResult();
 
 export default LottoController;
