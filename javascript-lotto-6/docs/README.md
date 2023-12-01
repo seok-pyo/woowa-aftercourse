@@ -1,4 +1,4 @@
-# LottoGame
+# LottoGame(cp)
 
 ## 기능 목록
 
