@@ -1,4 +1,4 @@
-# LottoGame
+# LottoGame(12/01)
 
 ## 기능 목록
 
