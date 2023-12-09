@@ -14,15 +14,25 @@ const OutputView = {
       Console.print(`${key} ${value}개`);
     }
   },
+
+  printTotalPrice(totalPrice) {
+    Console.print(`\n<할인 전 총주문 금액>`);
+    Console.print(`${totalPrice}원`);
+  },
+
   printGift(price) {
     const result = Discount.giftCheck(price);
-    Console.print('\n<할인 전 총주문 금액>');
+    Console.print('\n<증정 메뉴>');
     if (result) Console.print('샴페인 1개');
     else Console.print('없음');
   },
 
   printBenefit(day, quantity, total) {
     Console.print('\n<혜택 내역>');
+    if (total < 10000) {
+      Console.print('없음');
+      return;
+    }
     Console.print(`크리스마스 디데이 할인: -${Discount.dDayCheck(day)}원`);
 
     if (Discount.weekendCheck(day) && quantity[0] !== 0) {
@@ -60,7 +70,7 @@ const OutputView = {
     if (totalBenefit >= 10000 && totalBenefit < 20000) badge = '트리';
     if (totalBenefit >= 20000) badge = '산타';
 
-    Console.print(`\n12월 이벤트 배지\n${badge}`);
+    Console.print(`\n<12월 이벤트 배지>\n${badge}`);
   },
 };
 

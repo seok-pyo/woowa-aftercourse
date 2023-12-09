@@ -1,6 +1,6 @@
 import InputView from './InputView.js';
 import OutputView from './OutputView.js';
-import Discount from './discountCheck.js';
+import validate from './validation.js';
 import menu from './menu.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
@@ -13,10 +13,10 @@ class Server {
     while (true) {
       try {
         this.#date = await InputView.readDate();
-        if (this.#date === '0') throw new Error();
+        validate.date(this.#date);
         break;
       } catch (e) {
-        MissionUtils.Console.print('[ERROR]');
+        MissionUtils.Console.print(e.message);
       }
     }
   }
@@ -24,15 +24,17 @@ class Server {
   async getMenu() {
     while (true) {
       try {
-        return await InputView.readMenu();
+        let tmp = await InputView.readMenu();
+        validate.order(tmp);
+        this.parsingMenu(tmp);
+        break;
       } catch (e) {
-        MissionUtils.Console.print('[ERROR}');
+        MissionUtils.Console.print(e.message);
       }
     }
   }
 
-  async parsingMenu(order) {
-    let tmp = await this.getMenu();
+  parsingMenu(tmp) {
     const menuItem = tmp.split(',');
     const parsedMenu = {};
 
@@ -65,6 +67,10 @@ class Server {
       price += this.checkMenu(menu, key) * value;
     }
     this.#totalPrice = price;
+  }
+
+  printTotal() {
+    OutputView.printTotalPrice(this.#totalPrice);
   }
 
   printGift() {
@@ -105,12 +111,4 @@ class Server {
   }
 }
 
-const server = new Server();
-await server.getInput();
-await server.parsingMenu();
-server.printTitle();
-server.printMenu();
-server.getTotalPrice();
-server.printGift();
-server.printBenefit();
-server.printTotalBenefit();
+export default Server;
