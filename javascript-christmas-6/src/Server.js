@@ -43,6 +43,10 @@ class Server {
     this.#order = parsedMenu;
   }
 
+  printTitle() {
+    OutputView.printTitle(this.#date);
+  }
+
   printMenu() {
     OutputView.printMenu(this.#order);
   }
@@ -90,12 +94,23 @@ class Server {
   printBenefit() {
     OutputView.printBenefit(this.#date, this.countCategory(), this.#totalPrice);
   }
+
+  printTotalBenefit() {
+    const totalBenefit = OutputView.printTotalBenefit(
+      this.#date,
+      this.countCategory(),
+      this.#totalPrice,
+    );
+    OutputView.printBadge(totalBenefit);
+  }
 }
 
 const server = new Server();
 await server.getInput();
 await server.parsingMenu();
+server.printTitle();
 server.printMenu();
 server.getTotalPrice();
 server.printGift();
 server.printBenefit();
+server.printTotalBenefit();
