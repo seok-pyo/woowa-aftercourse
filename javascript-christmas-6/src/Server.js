@@ -1,5 +1,6 @@
 import InputView from './InputView.js';
 import OutputView from './OutputView.js';
+import menu from './menu.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 class Server {
@@ -42,6 +43,22 @@ class Server {
 
   printMenu() {
     OutputView.printMenu(this.#order);
+  }
+
+  checkMenu(menuData, menuItem) {
+    for (const category in menuData) {
+      if (menuData[category].hasOwnProperty(menuItem)) {
+        return menuData[category][menuItem];
+      }
+    }
+  }
+
+  getTotalPrice() {
+    let totalPrice = 0;
+    for (const [key, value] of Object.entries(this.#order)) {
+      totalPrice += this.checkMenu(menu, key) * value;
+    }
+    return totalPrice;
   }
 }
 

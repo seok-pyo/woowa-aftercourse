@@ -10,6 +10,8 @@ const menu = {
   음료: { 제로콜라: 3000, 레드와인: 60000, 샴페인: 25000 },
 };
 
-menu.forEach(item => {
-  Object.freeze(item);
-});
+// menu.forEach(item => {
+//   Object.freeze(item);
+// });
+
+export default menu;
