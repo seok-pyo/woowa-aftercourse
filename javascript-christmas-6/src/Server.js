@@ -1,5 +1,6 @@
 import InputView from './InputView.js';
 import OutputView from './OutputView.js';
+import Discount from './discountCheck.js';
 import menu from './menu.js';
 import { MissionUtils } from '@woowacourse/mission-utils';
 
@@ -65,10 +66,36 @@ class Server {
   printGift() {
     OutputView.printGift(this.#totalPrice);
   }
+
+  getCategory(menuData, menuItem) {
+    for (const category in menuData) {
+      if (menuData[category].hasOwnProperty(menuItem)) {
+        return category;
+      }
+    }
+  }
+
+  countCategory() {
+    const quantityCategory = [0, 0];
+    for (const key of Object.keys(this.#order)) {
+      if (this.getCategory(menu, key) === '메인') {
+        quantityCategory[0] += this.#order[key];
+      } else if (this.getCategory(menu, key) === '디저트') {
+        quantityCategory[1] += this.#order[key];
+      }
+    }
+    return quantityCategory;
+  }
+
+  printBenefit() {
+    OutputView.printBenefit(this.#date, this.countCategory(), this.#totalPrice);
+  }
 }
 
 const server = new Server();
 await server.getInput();
 await server.parsingMenu();
 server.printMenu();
+server.getTotalPrice();
 server.printGift();
+server.printBenefit();
