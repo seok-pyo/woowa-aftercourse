@@ -1,3 +1,4 @@
+import Discount from './discountCheck.js';
 import { Console } from '@woowacourse/mission-utils';
 
 const OutputView = {
@@ -7,7 +8,11 @@ const OutputView = {
       Console.print(`${key} ${value}개`);
     }
   },
-  // ...
+  printGift(price) {
+    const result = Discount.giftCheck(price);
+    if (result) Console.print('샴페인 1개 증정');
+    else Console.print('없음');
+  },
 };
 
 export default OutputView;

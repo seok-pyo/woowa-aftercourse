@@ -28,5 +28,15 @@ class Discount {
     return isStar;
   }
 
-  static giftCheck(totalPrice) {}
+  static giftCheck(totalPrice) {
+    let result = false;
+
+    if (totalPrice >= 120_000) {
+      result = true;
+      return result;
+    }
+    return result;
+  }
 }
+
+export default Discount;

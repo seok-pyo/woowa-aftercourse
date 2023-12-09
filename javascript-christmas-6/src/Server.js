@@ -6,6 +6,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 class Server {
   #date;
   #order;
+  #totalPrice;
 
   async getInput() {
     while (true) {
@@ -54,11 +55,15 @@ class Server {
   }
 
   getTotalPrice() {
-    let totalPrice = 0;
+    let price = 0;
     for (const [key, value] of Object.entries(this.#order)) {
-      totalPrice += this.checkMenu(menu, key) * value;
+      price += this.checkMenu(menu, key) * value;
     }
-    return totalPrice;
+    this.#totalPrice = price;
+  }
+
+  printGift() {
+    OutputView.printGift(this.#totalPrice);
   }
 }
 
@@ -66,3 +71,4 @@ const server = new Server();
 await server.getInput();
 await server.parsingMenu();
 server.printMenu();
+server.printGift();
