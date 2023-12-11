@@ -22,14 +22,17 @@ class Server {
   }
 
   async getMenu() {
-    while (true) {
+    let attempts = 0;
+    const maxAttempts = 3;
+
+    while (attempts < maxAttempts) {
       try {
         let tmp = await InputView.readMenu();
-        validate.order(tmp);
         this.parsingMenu(tmp);
         break;
       } catch (e) {
         MissionUtils.Console.print(e.message);
+        attempts += 1;
       }
     }
   }
@@ -39,9 +42,22 @@ class Server {
     const parsedMenu = {};
 
     menuItem.forEach(item => {
-      const [menu, quantity] = item.split('-');
+      const itemArray = item.split('-');
+      if (itemArray.length !== 2) {
+        throw new Error(
+          '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.',
+        );
+      }
+
+      const [menu, quantity] = itemArray;
+
+      if (/[^1-9]/.test(quantity))
+        throw new Error(
+          '[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.',
+        );
       parsedMenu[menu] = parseInt(quantity, 10);
     });
+
     this.#order = parsedMenu;
   }
 
