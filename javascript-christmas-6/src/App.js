@@ -5,15 +5,19 @@ class App {
     this.server = new Server();
   }
   async run() {
-    await this.server.getInput();
-    await this.server.getMenu();
-    this.server.printTitle();
-    this.server.printMenu();
-    this.server.getTotalPrice();
-    this.server.printTotal();
-    this.server.printGift();
-    this.server.printBenefit();
-    this.server.printTotalBenefit();
+    try {
+      await this.server.getInput();
+      await this.server.getMenu();
+      this.server.printTitle();
+      this.server.printMenu();
+      this.server.getTotalPrice();
+      this.server.printTotal();
+      this.server.printGift();
+      this.server.printBenefit();
+      this.server.printTotalBenefit();
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 }
 

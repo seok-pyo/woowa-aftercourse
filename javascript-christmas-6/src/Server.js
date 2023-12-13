@@ -35,6 +35,10 @@ class Server {
         attempts += 1;
       }
     }
+
+    if (attempts === 3) {
+      throw new Error(['ERRORRRR']);
+    }
   }
 
   parsingMenu(tmp) {
